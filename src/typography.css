@@ -1,0 +1,76 @@
+@font-face {
+  font-family: 'Segoe UI (Custom)';
+  font-weight: 300;
+  size-adjust: 100%;
+  descent-override: 35%;
+  ascent-override: 105%;
+  src: local('Segoe UI Semilight'), local('Segoe UI');
+}
+
+@font-face {
+  font-family: 'Segoe UI (Custom)';
+  font-weight: 300;
+  font-style: italic;
+  size-adjust: 100%;
+  descent-override: 35%;
+  ascent-override: 105%;
+  src: local('Segoe UI Semilight Italic'), local('Segoe UI Italic');
+}
+
+@font-face {
+  font-family: 'Segoe UI (Custom)';
+  font-weight: 400;
+  size-adjust: 100%;
+  descent-override: 35%;
+  ascent-override: 105%;
+  src: local('Segoe UI');
+}
+
+@font-face {
+  font-family: 'Segoe UI (Custom)';
+  font-weight: 400;
+  font-style: italic;
+  size-adjust: 100%;
+  descent-override: 35%;
+  ascent-override: 105%;
+  src: local('Segoe UI Italic');
+}
+
+@font-face {
+  font-family: 'Segoe UI (Custom)';
+  font-weight: 500;
+  size-adjust: 100%;
+  descent-override: 35%;
+  ascent-override: 105%;
+  src: local('Segoe UI Semibold'), local('Segoe UI');
+}
+
+@font-face {
+  font-family: 'Segoe UI (Custom)';
+  font-weight: 500;
+  font-style: italic;
+  size-adjust: 100%;
+  descent-override: 35%;
+  ascent-override: 105%;
+  src: local('Segoe UI Semibold Italic'), local('Segoe UI Italic');
+}
+
+@font-face {
+  font-family: 'Segoe UI (Custom)';
+  font-weight: 700;
+  size-adjust: 100%;
+  descent-override: 35%;
+  ascent-override: 105%;
+  src: local('Segoe UI Bold');
+}
+
+@font-face {
+  font-family: 'Segoe UI (Custom)';
+  font-weight: 700;
+  font-style: italic;
+  size-adjust: 100%;
+  descent-override: 35%;
+  ascent-override: 105%;
+  src: local('Segoe UI Bold Italic');
+}
+
