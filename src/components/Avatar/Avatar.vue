@@ -1,8 +1,11 @@
 <script setup lang="ts">
-import { useRoute } from 'vue-router';
+interface AvatarProps {
+	id?: number,
+	size?: string,
+	color?: string
+}
 
-defineProps<{id?: number, size: string, color: string}>();
-const route = useRoute();
+const { size = "1px", color = "gray", id } = defineProps<AvatarProps>();
 </script>
 
 <template>

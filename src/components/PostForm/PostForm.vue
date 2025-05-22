@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import type { ApiUser } from '@/utils/types';
-
 import { ref, onMounted } from 'vue';
 import { createPost } from '@/services/apis';
 
-import Avatar from '@/components/Avatar.vue';
+import Avatar from '@/components/Avatar/Avatar.vue';
 import Textarea from '@/primitives/Textarea.vue';
 import Button from '@/primitives/Button.vue';
 

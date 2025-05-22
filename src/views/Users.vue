@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { getUsers } from '@/services/apis';
-import Input from '@/primitives/Input.vue';
-import User from '@/components/User.vue';
+import User from '@/components/User/User.vue';
 
 const users = await getUsers();
 </script>

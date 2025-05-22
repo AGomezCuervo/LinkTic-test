@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router';
 import { setCurrentUser } from '@/utils/utils';
-import PostForm from '@/components/PostForm.vue';
+import PostForm from '@/components/PostForm/PostForm.vue';
 const user = setCurrentUser();
 </script>
 
