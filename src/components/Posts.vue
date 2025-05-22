@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { ApiPost } from '@/utils/types';
-import Post from '@/components/Post/Post.vue';
+import Post from '@/components/Post.vue';
 
 const props = defineProps<{data: ApiPost[]}>()
 </script>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { ApiPost } from '@/utils/types';
-import User from '@/components/User/User.vue';
+import User from '@/components/User.vue';
 
 const props = defineProps<{data: ApiUser[]}>()
 </script>

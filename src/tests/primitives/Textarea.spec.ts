@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, afterEach } from 'vitest';
 import { mount } from '@vue/test-utils';
-import Textarea from './Textarea.vue';
+import Textarea from '@/primitives/Textarea.vue';
 
 describe("Textarea.vue", () => {
 	afterEach(() => {

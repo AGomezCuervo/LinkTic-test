@@ -1,8 +1,8 @@
 import { describe, it, expect, vi } from 'vitest';
 import { mount } from '@vue/test-utils';
-import Posts from './Posts.vue';
+import Posts from '@/components/Posts.vue';
 
-vi.mock('@/components/Post/Post.vue', () => ({
+vi.mock('@/components/Post.vue', () => ({
   default: {
     props: ['data'],
     template: '<div class="mock-post">{{ data.username }}</div>',

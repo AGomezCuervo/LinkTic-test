@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
-import User from './User.vue'
+import User from '@/components/User.vue'
 import { h } from 'vue'
 
 const MockAvatar = {

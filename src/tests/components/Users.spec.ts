@@ -1,8 +1,8 @@
 import { describe, it, expect, vi } from 'vitest';
 import { mount } from '@vue/test-utils';
-import Users from './Users.vue';
+import Users from '@/components/Users.vue';
 
-vi.mock("@/components/User/User.vue", () => ({
+vi.mock("@/components/User.vue", () => ({
   default: {
     props: ['data'],
     template: '<div class="mock-user">{{ data.username }}</div>',

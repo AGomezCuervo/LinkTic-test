@@ -1,5 +1,5 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import * as apiModule from './apis';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
+import * as apiModule from '@/services/apis';
 import type { ApiPost, ApiUser } from '@/utils/types';
 
 vi.mock('@/utils/utils', () => ({
@@ -7,7 +7,7 @@ vi.mock('@/utils/utils', () => ({
   colorGenerator: vi.fn(),
 }));
 
-vi.mock('./axiosInstances', () => ({
+vi.mock('@/services/axiosInstances', () => ({
   mockApi: {
     get: vi.fn(),
     post: vi.fn(),
@@ -15,7 +15,7 @@ vi.mock('./axiosInstances', () => ({
 }));
 
 describe('API functions', async () => {
-  const { mockApi } = await import('./axiosInstances');
+  const { mockApi } = await import('@/services/axiosInstances');
   const { setCurrentUser, colorGenerator } = await import('@/utils/utils');
 
   beforeEach(() => {
@@ -107,7 +107,6 @@ describe('API functions', async () => {
       expect(mockApi.get).toHaveBeenCalledWith('users/5');
       expect(Array.isArray(res)).toBe(true);
       expect(res[0]).toEqual(userMock);
-			console.log("lolis", res);
       for (const user of res) {
         expect(user.color).toBeDefined();
       }

@@ -2,7 +2,7 @@
 import { getUsers, getUserPosts } from '@/services/apis';
 import { useRoute, useRouter } from 'vue-router';
 import { ref } from 'vue';
-import Posts from '@/components/Posts/Posts.vue';
+import Posts from '@/components/Posts.vue';
 
 const route = useRoute();
 const router = useRouter();
@@ -28,17 +28,20 @@ async function getUser(user_id: number) {
 }
 
 async function getPosts(user_id: number) {
-	try {
-		const posts = await getUserPosts(user_id)
-		for (const item of posts) {
-			item.name = user.name;
-			item.username = user.username;
-		}
-		return posts;
-	} catch(err) {
-		console.error(err);
-	}
+  try {
+    const posts = await getUserPosts(user_id);
+    if (user) {
+      for (const item of posts) {
+        item.name = user.name;
+        item.username = user.username;
+      }
+    }
+    return posts;
+  } catch(err) {
+    console.error(err);
+  }
 }
+
 
 function goBack() {
 	router.back();
