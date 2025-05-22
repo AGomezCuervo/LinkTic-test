@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import Avatar from '@/components/Avatar.vue';
 interface PropsData {
-	userName: string,
+	name: string,
+	username: string,
 	title: string,
 	body: string,
 	color: string,
@@ -11,16 +13,12 @@ defineProps<{data: PropsData}>()
 
 <template>
 <article class="main-container">
-	<div class="avatar-container">
-		<div class="border-radius"></div>
-	</div>
+	<Avatar :color="data.color" size="40px"/>
 	<div class="info-container">
 		<div class="user-info">
-			<a>{{data.userName}}</a>
+			<a>{{data.name}}</a>
 			<div>
-				<span>@sml_TJ</span>
-				<span>·</span>
-				<span>May 19</span>
+				<span>@{{data.username}}</span>
 			</div>
 		</div>
 		<div class="data">
@@ -37,16 +35,6 @@ defineProps<{data: PropsData}>()
 		padding: 1rem;
 		display: flex;
 		font-size: 13px;
-}
-
-.avatar-container {
-		min-width: 40px;
-		margin-right: 8px;
-		& div {
-			background-color: v-bind(data.color);
-			width: 100%;
-			height: 40px;
-		}
 }
 
 .info-container {

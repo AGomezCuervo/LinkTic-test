@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import Avatar from '@/components/Avatar.vue';
+
 interface PropsData {
 	name: string,
+	data: number,
 	username: string,
 	website: string,
 	email: string,
@@ -8,15 +11,12 @@ interface PropsData {
 }
 
 defineProps<{data: PropsData}>()
+
 </script>
 
 <template>
 <article class="main-container">
-	<div class="avatar-container">
-		<RouterLink :to="`/users/${data.id}`" class="border-radius">
-			<img src="/user.svg" alt="Logo" />
-		</RouterLink>
-	</div>
+	<Avatar :id="data.id" size="60px" :color="data.color"/>
 	<RouterLink :to="`/users/${data.id}`" class="info-container">
 		<div class="user-info">
 			<span>{{data.name}}</span>
@@ -35,22 +35,6 @@ defineProps<{data: PropsData}>()
 .main-container {
 		padding: 1rem;
 		display: flex;
-}
-
-.avatar-container {
-		min-width: 80px;
-		max-width: 80px;
-		margin-right: 16px;
-		& a {
-			background-color: v-bind(data.color);
-			width: 100%;
-			height: 80px;
-			display: block;
-		}
-		
-		& img {
-				width: 100%;
-		}
 }
 
 .info-container {

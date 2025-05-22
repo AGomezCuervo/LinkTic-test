@@ -7,20 +7,24 @@ const users = await getUsers();
 </script>
 
 <template>
-<h1>We Are in Users</h1>
+<h2>Users List</h2>
 <div class="users-container">
 	<User v-for="(user, index) in users" :data="user" :key="index" />
 </div>
 </template>
 
 <style scoped>
-	.users-container {
-		border: 1px solid var(--border-color);
-		content-visibility: auto;
-		max-width: 600px;	
+h2 {
+	text-align: center;
+}
 
-		& article:not(:last-child) {
-  		border-bottom: 1px solid var(--border-color);
-		}
+.users-container {
+	border: 1px solid var(--border-color);
+	content-visibility: auto;
+	max-width: 600px;	
+	
+	& article:not(:last-child) {
+  	border-bottom: 1px solid var(--border-color);
 	}
+}
 </style>
