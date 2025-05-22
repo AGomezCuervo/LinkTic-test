@@ -85,7 +85,7 @@ describe('API functions', async () => {
   });
 
   describe('getUsers', () => {
-    const userMock: ApiUser = { id: 10, name: 'currentUser' } as any;
+    const userMock: ApiUser = { id: 10, name: 'currentUser', color: "red" } as any;
 
     beforeEach(() => {
       (setCurrentUser as vi.Mock).mockReturnValue(userMock);
@@ -107,6 +107,7 @@ describe('API functions', async () => {
       expect(mockApi.get).toHaveBeenCalledWith('users/5');
       expect(Array.isArray(res)).toBe(true);
       expect(res[0]).toEqual(userMock);
+			console.log("lolis", res);
       for (const user of res) {
         expect(user.color).toBeDefined();
       }
