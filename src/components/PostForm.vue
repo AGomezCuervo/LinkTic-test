@@ -1,25 +1,45 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
-import Textarea from '@/primitives/Textarea.vue'
-import Button from '@/primitives/Button.vue'
+import type { ApiUser } from '@/utils/types';
+
+import { ref, onMounted } from 'vue';
+import { createPost } from '@/services/apis';
+
+import Avatar from '@/components/Avatar.vue';
+import Textarea from '@/primitives/Textarea.vue';
+import Button from '@/primitives/Button.vue';
+
+const props = defineProps<{user: ApiUser }>()
 
 const modalRef = ref(null)
 const content = ref('')
+console.log(props.user.color);
 
+// functions
 function openModal() {
-  modalRef.value?.showModal()
+	modalRef.value?.showModal()
 }
 
 function closeModal() {
-  modalRef.value?.close()
+	modalRef.value?.close()
 }
 
-function submit() {
-  if (content.value.trim()) {
-    console.log('Publicando:', content.value)
-    closeModal()
-    content.value = ''
-  }
+async function submit() {
+	try {
+		if (content.value.trim()) {
+			const obj = {
+				title: props.user.username,
+				body: content.value,
+				userId: props.user.id
+			};
+
+			const res = await createPost(obj);
+			closeModal();
+			content.value = '';
+			window.location.href = `/users/${res.userId}`;
+		} 
+ } catch(err) {
+			console.error(err);
+	}
 }
 
 function onClose() {
@@ -28,7 +48,7 @@ function onClose() {
 
 function handleClick(e: MouseEvent) {
 	if(e.target == modalRef.value) {
-			closeModal()
+		closeModal()
 	}
 }
 
@@ -38,11 +58,9 @@ function handleClick(e: MouseEvent) {
 	<Button @click="openModal" class="floating">+</Button>
   <dialog class="modal" ref="modalRef" @click="handleClick" @close="onClose">
 		<article class="main-container">
-			<div class="avatar-container">
-				<div class="border-radius"></div>
-			</div>
+			<Avatar :color="props.user.color" size="40px"/>
 			<div class="data">
-				<Textarea/>
+				<Textarea v-model="content"/>
 			</div>
 		</article>
 		<div class="actions">
@@ -58,9 +76,9 @@ function handleClick(e: MouseEvent) {
 	padding:0;
 	border: none;
 	width: 100vw;
-	max-width: 100vw;
-	margin: 0;
-	border-bottom: 1px solid var(--border-color);
+	max-width: 40rem;
+	border: 1px solid var(--border-color);
+	margin-top: 0;
 	padding-top: 1rem;
 }
 
@@ -69,38 +87,35 @@ function handleClick(e: MouseEvent) {
 }
 
 .main-container {
-		padding: 1rem;
-		display: flex;
-		min-height: 10rem;
+	padding: 1rem;
+	display: flex;
+	min-height: 10rem;
 }
 
 .avatar-container {
-		min-width: 40px;
-		margin-right: 8px;
-		& div {
-			background-color: var(--red-1);
-			width: 100%;
-			height: 40px;
-			display: block;
-		}
+	min-width: 40px;
+	margin-right: 8px;
+	& div {
+		background-color: var(--red-1);
+		width: 100%;
+		height: 40px;
+		display: block;
+	}
 }
 
 .data {
-		flex: 1;
+	flex: 1;
 }
 
 .actions {
-		display: flex;
-		justify-content: center;
-		gap: 20%;
-		margin-bottom: 1rem;
-
-		& button:nth-child(1) {
-		}
-		
-		& button:nth-child(2) {
-				background-color: var(--red-1);
-		}
+	display: flex;
+	justify-content: center;
+	gap: 20%;
+	margin-bottom: 1rem;
+	
+	& button:nth-child(2) {
+		background-color: v-bind(props.user.color);
+	}
 }
 
 .floating{
@@ -110,7 +125,7 @@ function handleClick(e: MouseEvent) {
 	width: 56px;
 	height: 56px;
 	z-index: 1;
-	background-color: var(--red-1);
+	background-color: v-bind(props.user.color);
 	font-weight: 700;
 	font-size: 2rem;
 }
