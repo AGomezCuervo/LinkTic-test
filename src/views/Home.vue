@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { getUsers } from '@/services/apis';
-import Users from '@/components/Users/Users.vue';
+import Users from '@/components/Users.vue';
 
 const users = await getUsers();
 </script>

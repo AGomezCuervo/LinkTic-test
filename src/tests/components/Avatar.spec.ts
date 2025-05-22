@@ -1,5 +1,6 @@
+import { describe, it, expect, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
-import Avatar from './Avatar.vue'
+import Avatar from '@/components/Avatar.vue'
 
 const mockRouterLink = {
   name: 'RouterLink',

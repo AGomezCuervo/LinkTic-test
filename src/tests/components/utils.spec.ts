@@ -1,5 +1,5 @@
-import { colorGenerator, setCurrentUser } from "./utils";
-import { describe, it, expect, afterEach } from 'vitest'
+import { colorGenerator, setCurrentUser } from "@/utils/utils";
+import { describe, it, expect, afterEach } from 'vitest';
 
 describe("colorGenerator", () => {
   it("Generate an HSL color based on id", () => {

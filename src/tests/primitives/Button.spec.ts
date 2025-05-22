@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
-import Button from './Button.vue'
+import Button from '@/primitives/Button.vue'
 
 describe('Button.vue', () => {
 	afterEach(() => {
