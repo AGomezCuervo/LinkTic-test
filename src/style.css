@@ -16,9 +16,12 @@
 	--color-surface: rgba(0, 0, 0, 0.25);
 	--space-1: 2rem;
 	--input-text-color: #eeeeec;
-	--gray-2: rgb(113, 118, 123);
 	--border-color: rgb(47, 51, 54);
+
 	--gray-1: #fffbed3c;
+	--gray-2: rgb(113, 118, 123);
+	--gray-3: rgb(51, 54, 57);
+	
 	--red-1: #e5484d;
 }
 

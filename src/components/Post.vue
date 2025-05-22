@@ -2,7 +2,8 @@
 interface PropsData {
 	userName: string,
 	title: string,
-	body: string
+	body: string,
+	color: string,
 }
 
 defineProps<{data: PropsData}>()
@@ -42,7 +43,7 @@ defineProps<{data: PropsData}>()
 		min-width: 40px;
 		margin-right: 8px;
 		& div {
-			background-color: var(--red-1);
+			background-color: v-bind(data.color);
 			width: 100%;
 			height: 40px;
 		}

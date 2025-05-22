@@ -1,7 +1,7 @@
 import { mockApi } from './axiosInstances';
 import { colorGenerator } from '@/utils';
 
-export async function getPost(id?: number) {
+export async function getPosts(id?: number) {
 		let query = "posts";
 		if(id) query += `/${id}`
 
@@ -14,7 +14,7 @@ export async function getPost(id?: number) {
 		}
 }
 
-export async function getUser(id?: number) {
+export async function getUsers(id?: number) {
 		let query = "users";
 		if(id) query += `/${id}`
 
@@ -62,6 +62,11 @@ export async function getPostsWithUserNames() {
 export async function getUserPosts(id: number) {
 		try {
 				const res = await mockApi.get(`posts?userId=${id}`);
+				const color = colorGenerator(id);
+
+				for (const item of res.data) {
+						item.color = color;
+				}
 				return res.data;
 		} catch (err:AxiosError) {
 				console.error(err);
