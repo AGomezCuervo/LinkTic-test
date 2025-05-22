@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { getUsers } from '@/services/apis';
-import User from '@/components/User/User.vue';
+import Users from '@/components/Users/Users.vue';
 
 const users = await getUsers();
 </script>
@@ -8,11 +8,12 @@ const users = await getUsers();
 <template>
 <h2>Users List</h2>
 <div class="users-container">
-	<User v-for="(user, index) in users" :data="user" :key="index" />
+	<Users :data="users" />
 </div>
 </template>
 
 <style scoped>
+
 h2 {
 	text-align: center;
 }

@@ -14,11 +14,6 @@ const postsData = [
   { name: 'Jane Doe', username: 'jane', title: 'Post 2', body: 'Body 2', color: 'blue' },
 ];
 
-const mockPost = {
-  template: '<div class="mock-post">{{ data.username }}</div>',
-  props: ['data'],
-};
-
 describe('Posts.vue', () => {
   it('renders a Post for each item in data', () => {
     const wrapper = mount(Posts, {

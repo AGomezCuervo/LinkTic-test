@@ -47,53 +47,55 @@ function goBack() {
 </script>
 
 <template>
-<section class="main-container">
-	<div class="back">
-		<button @click="goBack" class="arrow">
-			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ffffff">
-				<g>
-					<path d="M7.414 13l5.043 5.04-1.414 1.42L3.586 12l7.457-7.46 1.414 1.42L7.414 11H21v2H7.414z" />
-				</g>
-			</svg>
-		</button>
-		<div>
-			<h3>{{user.name}}</h3>
-			<span>{{posts.length}} Publications</span>
-		</div>
-	</div>
-	<div class="banner">
-		<div class="avatar border-radius">
-			<img src="/user.svg" alt="Logo" />
-		</div>
-	</div>
-	<div class="data">
-		<div class="header">
-			<h2>{{user.name}}</h2>
-			<div>@{{user.username}}</div>
-		</div>
-		
-		<div class="content">
-			<div>Email: {{user.email}}</div>
-			<div>Website: {{user.website}}</div>
-			<div>Phone: {{user.phone}}</div>
-		</div>
-		<div class="footer">
-			<div>{{user.address.city}} - {{user.address.street}}</div>
-		</div>
-		
-		<div class="navBar">
-			<button @click="position = 0">
-				<div class="option">
-					<span>Publications</span>
-					<div v-show="position == 0" class="underline"></div>
-				</div>
+	<div>
+		<div class="back">
+			<button @click="goBack" class="arrow">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ffffff">
+					<g>
+						<path d="M7.414 13l5.043 5.04-1.414 1.42L3.586 12l7.457-7.46 1.414 1.42L7.414 11H21v2H7.414z" />
+					</g>
+				</svg>
 			</button>
-			<button @click="position = 1">
-				<div class="option">
-					<span>Responses</span>
-					<div v-show="position == 1" class="underline"></div>
+			<div>
+				<h3>{{user.name}}</h3>
+				<span>{{posts.length}} Publications</span>
+			</div>
+		</div>
+
+		<section class="main-container">
+			<div class="banner">
+				<div class="avatar border-radius">
+					<img src="/user.svg" alt="Logo" />
 				</div>
-			</button>
+			</div>
+			<div class="data">
+				<div class="header">
+					<h2>{{user.name}}</h2>
+					<div>@{{user.username}}</div>
+				</div>
+				
+				<div class="content">
+					<div>Email: {{user.email}}</div>
+					<div>Website: {{user.website}}</div>
+					<div>Phone: {{user.phone}}</div>
+				</div>
+				<div class="footer">
+					<div>{{user.address.city}} - {{user.address.street}}</div>
+				</div>
+				
+				<div class="navBar">
+					<button @click="position = 0">
+						<div class="option">
+							<span>Publications</span>
+							<div v-show="position == 0" class="underline"></div>
+						</div>
+					</button>
+					<button @click="position = 1">
+						<div class="option">
+							<span>Responses</span>
+							<div v-show="position == 1" class="underline"></div>
+						</div>
+					</button>
 		</div>
 	</div>
 </section>
@@ -101,6 +103,7 @@ function goBack() {
 <section>
 	<Posts :data="posts"/>
 </section>
+</div>
 </template>
 
 <style scoped>
@@ -120,10 +123,13 @@ h3 {
 }
 
 .back {
-	display:flex;
+	position: sticky;
+	display: flex;
 	align-items: center;
+	top: 0;
 	gap: 2rem;
-	padding-top: .2rem;
+	z-index: 999;
+	background-color: #242424;
 	
 	& span {
 		color: var(--gray-2);
@@ -186,11 +192,11 @@ h3 {
 .navBar {
 	display: flex;
 	justify-content:space-around;
-
+	
 	& > button {
 		flex: 1;
 	}
-
+	
 	& span{
 		font-weight:bold
 	}
