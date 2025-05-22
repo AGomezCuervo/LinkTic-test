@@ -1,5 +1,70 @@
-# Vue 3 + TypeScript + Vite
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+# Vue Posts App
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+## Descripción
+Aplicación web desarrollada en Vue 3 que consume una API REST para mostrar usuarios y sus publicaciones. Permite crear nuevas publicaciones y gestionar datos con colores personalizados para cada usuario.
+
+## Tecnologías utilizadas
+- Vue 3 + Composition API
+- Vue Router para navegación
+- Vitest para testing
+- Axios para llamadas HTTP (mockeado en tests)
+- LocalStorage para almacenamiento temporal de posts
+- TypeScript
+
+## Instalación
+
+1. Clonar el repositorio:
+   ```bash
+   git clone git@github.com:AGomezCuervo/LinkTic-test.git
+   cd LinkTic-test
+   ```
+
+2. Instalar dependencias:
+   ```bash
+   npm install
+   ```
+
+3. Ejecutar la aplicación en modo desarrollo:
+   ```bash
+   npm run dev
+   ```
+
+4. Abrir en el navegador:
+   ```
+   http://localhost:5173
+   ```
+
+## Scripts disponibles
+
+- `npm run dev`: Inicia servidor local para desarrollo
+- `npm run build`: Construye la app para producción
+- `npm run test`: Ejecuta los tests con Vitest y muestra cobertura
+
+## Testing
+
+- Se usan mocks para Axios y utilidades para simular API y datos
+- Pruebas cubren funciones que manejan la API (getPosts, createPost, getUsers, getUserPosts)
+- Se verifica que localStorage se actualice y se usen datos cacheados cuando corresponde
+- Uso de Vitest para mocks, aserciones
+
+## Justificaciones técnicas
+
+- Se mockea la instancia axios para desacoplar las pruebas de la red
+- LocalStorage se usa para persistencia temporal de posts creados por el cliente
+- Router usa lazy loading para mejorar rendimiento
+
+## Estructura principal
+
+- `src/main.ts`: Punto de entrada de Vue
+- `src/router.ts`: Configuración de rutas
+- `src/services/apis.ts`: Funciones para consumir API
+- `src/components`: Componentes UI reutilizables
+- `src/views`: Vistas principales (Users, Profile, NotFound)
+- `src/utils`: Funciones y tipos auxiliares
+
+## Notas
+
+- La aplicación es un ejemplo didáctico de consumo de API y testing en Vue 3
+- Código modular y fácil de extender
+- Tests con buena cobertura para asegurar calidad

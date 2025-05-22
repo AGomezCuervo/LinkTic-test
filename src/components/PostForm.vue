@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { ApiUser } from '@/utils/types';
-
 import { ref, onMounted } from 'vue';
 import { createPost } from '@/services/apis';
 
@@ -12,7 +11,6 @@ const props = defineProps<{user: ApiUser }>()
 
 const modalRef = ref(null)
 const content = ref('')
-console.log(props.user.color);
 
 // functions
 function openModal() {
@@ -56,7 +54,7 @@ function handleClick(e: MouseEvent) {
 <template>
 <div>
 	<Button @click="openModal" class="floating">+</Button>
-  <dialog class="modal" ref="modalRef" @click="handleClick" @close="onClose">
+  <dialog cla<ss="modal" ref="modalRef" @click="handleClick" @close="onClose">
 		<article class="main-container">
 			<Avatar :color="props.user.color" size="40px"/>
 			<div class="data">
