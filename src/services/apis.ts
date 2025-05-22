@@ -27,7 +27,7 @@ export async function createPost(post:ApiPost) {
 		return res;
 
 	} catch(err: AxiosError) {
-		console.err(err);
+		console.error(err);
 		throw err;
 	}
 }
@@ -48,8 +48,8 @@ export async function getUsers(id?: number) {
 		const res: ApiUser[] | ApiUser = (await mockApi.get(query))?.data;
 
 		if(Array.isArray(res)) {
-			res.unshift(user);
 			for (const item of res) item.color = colorGenerator(item.id);
+			res.unshift(user);
 		} else {
 			res.color = colorGenerator(res.id);
 		}
@@ -60,31 +60,6 @@ export async function getUsers(id?: number) {
 		console.error(err);
 		throw err;
 	}
-}
-
-export async function getPostsWithUserNames() {
-  try {
-    const [postsRes, usersRes] = await Promise.all([
-      mockApi.get('posts'),
-      mockApi.get('users')
-    ]);
-
-    const posts = postsRes.data;
-    const users = usersRes.data;
-
-    const userMap = new Map(users.map(user => [user.id, user.name]));
-
-    const postsWithNames = posts.map(post => ({
-      ...post,
-      userName: userMap.get(post.userId)
-    }));
-
-    return postsWithNames;
-
-  } catch (err: AxiosError) {
-    console.err('Error fetching data:', err);
-		throw error
-  }
 }
 
 export async function getUserPosts(id: number) {

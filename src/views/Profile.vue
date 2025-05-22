@@ -1,8 +1,8 @@
 <script setup lang="ts">
-		import { getUsers, getUserPosts } from '@/services/apis';
-import { ref } from 'vue';
+import { getUsers, getUserPosts } from '@/services/apis';
 import { useRoute, useRouter } from 'vue-router';
-import Posts from '@/components/Posts.vue';
+import { ref } from 'vue';
+import Posts from '@/components/Posts/Posts.vue';
 
 const route = useRoute();
 const router = useRouter();
@@ -14,30 +14,30 @@ const position = ref<number>(0);
 
 //functions
 async function getUser(user_id: number) {
-		try {
-				const user = await getUsers(user_id);
-				if (!user) {
-						router.push("/NotFound");
-				}
-				return user;
-		} catch (err) {
-				console.error(err);
-				router.push("/NotFound");
-				throw err;
+	try {
+		const user = await getUsers(user_id);
+		if (!user) {
+			router.push("/NotFound");
 		}
+		return user;
+	} catch (err) {
+		console.error(err);
+		router.push("/NotFound");
+		throw err;
+	}
 }
 
 async function getPosts(user_id: number) {
-		try {
-			const posts = await getUserPosts(user_id)
-			for (const item of posts) {
-					item.name = user.name;
-					item.username = user.username;
-			}
-			return posts;
-		} catch(err) {
-				console.error(err);
+	try {
+		const posts = await getUserPosts(user_id)
+		for (const item of posts) {
+			item.name = user.name;
+			item.username = user.username;
 		}
+		return posts;
+	} catch(err) {
+		console.error(err);
+	}
 }
 
 function goBack() {
@@ -105,77 +105,77 @@ function goBack() {
 
 <style scoped>
 h2 {
-		margin: 0;
+	margin: 0;
 }
 
 h3 {
-		margin: 0;
-		font-size: 1rem;
+	margin: 0;
+	font-size: 1rem;
 }
 
 .main-container {
-		width: 100%;
-		box-sizing: border-box;
-		padding: 0 1px;
+	width: 100%;
+	box-sizing: border-box;
+	padding: 0 1px;
 }
 
 .back {
-		display:flex;
-		align-items: center;
-		gap: 2rem;
-		padding-top: .2rem;
-		
-		& span {
-				color: var(--gray-2);
-				font-size: .8rem;
-		}
-		
-		& .button {
-				height: fit-content;
-				width: fit-content;
-		}
-		
-		& svg {
-				width: 1.5rem;
-				height: 1.5rem;
-		}
-
+	display:flex;
+	align-items: center;
+	gap: 2rem;
+	padding-top: .2rem;
+	
+	& span {
+		color: var(--gray-2);
+		font-size: .8rem;
+	}
+	
+	& .button {
+		height: fit-content;
+		width: fit-content;
+	}
+	
+	& svg {
+		width: 1.5rem;
+		height: 1.5rem;
+	}
+	
 }
 
 .data {
-		padding: 1rem 1rem 0 1rem;
+	padding: 1rem 1rem 0 1rem;
 }
 
 .banner {
-		position:relative;
-		background-color: var(--gray-3);
-		min-height: 8rem;
-		margin-bottom: 40px;
+	position:relative;
+	background-color: var(--gray-3);
+	min-height: 8rem;
+	margin-bottom: 40px;
 }
 
 .avatar {
-		width: 80px;
-		position: absolute;
-		height: 80px;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		bottom: -40px;
-		left: 1rem;
-		background-color: v-bind(user.color);
-
-		& img {
-				display: block;
-				width: 50%;
-				height: 50%;
-		}
+	width: 80px;
+	position: absolute;
+	height: 80px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	bottom: -40px;
+	left: 1rem;
+	background-color: v-bind(user.color);
+	
+	& img {
+		display: block;
+		width: 50%;
+		height: 50%;
+	}
 }
 
 .header {
-		margin-bottom: 1rem;
-		& div {
-			color: var(--gray-2);
-		}
+	margin-bottom: 1rem;
+	& div {
+		color: var(--gray-2);
+	}
 }
 
 .footer {
