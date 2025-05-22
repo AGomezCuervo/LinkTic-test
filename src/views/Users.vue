@@ -1,20 +1,20 @@
 <script setup lang="ts">
-import { getPostsWithUserNames } from '@/services/apis';
+import { getUsers } from '@/services/apis';
 import Input from '@/primitives/Input.vue';
-import Post from '@/components/Post.vue';
+import User from '@/components/User.vue';
 
-const users = await getPostsWithUserNames();
+const users = await getUsers();
 </script>
 
 <template>
-<h1>We Aren in Users</h1>
-<div class="post-container">
-	<Post v-for="(user, index) in users" :data="user" :key="index" />
+<h1>We Are in Users</h1>
+<div class="users-container">
+	<User v-for="(user, index) in users" :data="user" :key="index" />
 </div>
 </template>
 
 <style scoped>
-	.post-container {
+	.users-container {
 		border: 1px solid var(--border-color);
 		content-visibility: auto;
 		max-width: 600px;	
