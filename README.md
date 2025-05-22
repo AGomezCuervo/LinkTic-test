@@ -63,6 +63,10 @@ Aplicación web desarrollada en Vue 3 que consume una API REST para mostrar usua
 - `src/views`: Vistas principales (Users, Profile, NotFound)
 - `src/utils`: Funciones y tipos auxiliares
 
+## Diagrama de la App:
+
+![Diagrama](./assets/flowchart.png)
+
 ## Notas
 
 - La aplicación es un ejemplo didáctico de consumo de API y testing en Vue 3
