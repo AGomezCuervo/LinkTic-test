@@ -16,8 +16,8 @@ Aplicación web desarrollada en Vue 3 que consume una API REST para mostrar usua
 
 1. Clonar el repositorio:
    ```bash
-   git clone <repo_url>
-   cd <repo_folder>
+   git clone git@github.com:AGomezCuervo/LinkTic-test.git
+   cd LinkTic-test
    ```
 
 2. Instalar dependencias:
@@ -32,7 +32,7 @@ Aplicación web desarrollada en Vue 3 que consume una API REST para mostrar usua
 
 4. Abrir en el navegador:
    ```
-   http://localhost:3000
+   http://localhost:5173
    ```
 
 ## Scripts disponibles
@@ -46,13 +46,12 @@ Aplicación web desarrollada en Vue 3 que consume una API REST para mostrar usua
 - Se usan mocks para Axios y utilidades para simular API y datos
 - Pruebas cubren funciones que manejan la API (getPosts, createPost, getUsers, getUserPosts)
 - Se verifica que localStorage se actualice y se usen datos cacheados cuando corresponde
-- Uso de Vitest para mocks, spies y aserciones
+- Uso de Vitest para mocks, aserciones
 
 ## Justificaciones técnicas
 
 - Se mockea la instancia axios para desacoplar las pruebas de la red
-- LocalStorage se usa para persistencia temporal de posts creados en cliente
-- Funciones API agregan color a usuarios para mejor visualización
+- LocalStorage se usa para persistencia temporal de posts creados por el cliente
 - Router usa lazy loading para mejorar rendimiento
 
 ## Estructura principal
