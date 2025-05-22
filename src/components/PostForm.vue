@@ -54,7 +54,7 @@ function handleClick(e: MouseEvent) {
 <template>
 <div>
 	<Button @click="openModal" class="floating">+</Button>
-  <dialog cla<ss="modal" ref="modalRef" @click="handleClick" @close="onClose">
+  <dialog class="modal" ref="modalRef" @click="handleClick" @close="onClose">
 		<article class="main-container">
 			<Avatar :color="props.user.color" size="40px"/>
 			<div class="data">
