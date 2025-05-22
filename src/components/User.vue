@@ -2,8 +2,8 @@
 interface PropsData {
 	name: string,
 	username: string,
-	website: string
-	email: string
+	website: string,
+	email: string,
 	phone: string
 }
 
@@ -13,7 +13,9 @@ defineProps<{data: PropsData}>()
 <template>
 <article class="main-container">
 	<div class="avatar-container">
-		<RouterLink :to="`/users/${data.id}`" class="border-radius"></RouterLink>
+		<RouterLink :to="`/users/${data.id}`" class="border-radius">
+			<img src="/user.svg" alt="Logo" />
+		</RouterLink>
 	</div>
 	<RouterLink :to="`/users/${data.id}`" class="info-container">
 		<div class="user-info">
@@ -22,8 +24,6 @@ defineProps<{data: PropsData}>()
 		</div>
 		<div class="data">
 			<div>website: {{data.website}}</div>
-			<div>email: {{data.email}}</div>
-			<div>phone: {{data.phone}}</div>
 		</div>
 		<div class="actions">
 		</div>
@@ -39,12 +39,17 @@ defineProps<{data: PropsData}>()
 
 .avatar-container {
 		min-width: 80px;
+		max-width: 80px;
 		margin-right: 16px;
 		& a {
 			background-color: v-bind(data.color);
 			width: 100%;
 			height: 80px;
 			display: block;
+		}
+		
+		& img {
+				width: 100%;
 		}
 }
 
