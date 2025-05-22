@@ -1,37 +1,65 @@
+import type { ApiPost, ApiUser } from '@/utils/types';
 import { mockApi } from './axiosInstances';
-import { colorGenerator } from '@/utils';
+import { colorGenerator, setCurrentUser } from '@/utils/utils';
 
 export async function getPosts(id?: number) {
-		let query = "posts";
-		if(id) query += `/${id}`
+	let query = "posts";
+	if(id) query += `/${id}`;
 
-		try {
-				const res = await mockApi.get(query);
-				return res.data;
-		} catch (err:AxiosError) {
-				console.error(err);
-				throw err;
-		}
+	try {
+		const res: ApiPost[] | ApiPost = (await mockApi.get(query))?.data;
+		return res;
+
+	} catch (err: AxiosError) {
+		console.error(err);
+		throw err;
+	}
+}
+
+export async function createPost(post:ApiPost) {
+	try {
+		const res: ApiPost = (await mockApi.post("posts", post))?.data;
+
+		const savedPosts = JSON.parse(localStorage.getItem("posts") || "[]");
+		savedPosts.unshift(res);
+		localStorage.setItem("posts", JSON.stringify(savedPosts));
+
+		return res;
+
+	} catch(err: AxiosError) {
+		console.err(err);
+		throw err;
+	}
 }
 
 export async function getUsers(id?: number) {
-		let query = "users";
-		if(id) query += `/${id}`
+	let query = "users";
+	const user = setCurrentUser();
 
-		try {
-				const res = await mockApi.get(query);
-				if(Array.isArray(res.data)) {
-						for (const item of res.data) {
-								item.color = colorGenerator(item.id);
-						}
-				} else {
-						res.data.color = colorGenerator(res.data.id);
-				}
-				return res.data;
-		} catch (err:AxiosError) {
-				console.error(err);
-				throw err;
+	if (id) {
+		if (id === user.id) {
+			return user;
 		}
+
+		query += `/${id}`;
+	}
+
+	try {
+		const res: ApiUser[] | ApiUser = (await mockApi.get(query))?.data;
+
+		if(Array.isArray(res)) {
+			res.unshift(user);
+			for (const item of res) item.color = colorGenerator(item.id);
+		} else {
+			res.color = colorGenerator(res.id);
+		}
+
+		return res;
+
+	} catch (err: AxiosError) {
+		console.error(err);
+		throw err;
+	}
 }
 
 export async function getPostsWithUserNames() {
@@ -51,25 +79,33 @@ export async function getPostsWithUserNames() {
       userName: userMap.get(post.userId)
     }));
 
-    console.log(postsWithNames);
-
     return postsWithNames;
-  } catch (error) {
-    console.error('Error fetching data:', error);
+
+  } catch (err: AxiosError) {
+    console.err('Error fetching data:', err);
+		throw error
   }
 }
 
 export async function getUserPosts(id: number) {
-		try {
-				const res = await mockApi.get(`posts?userId=${id}`);
-				const color = colorGenerator(id);
+	try {
+		const user = setCurrentUser();
+		const color = colorGenerator(id);
 
-				for (const item of res.data) {
-						item.color = color;
-				}
-				return res.data;
-		} catch (err:AxiosError) {
-				console.error(err);
-				throw err;
+		if (id === user.id) {
+			const posts = JSON.parse(localStorage.getItem("posts"));
+			for (const item of posts) item.color = user.color;
+			return posts
 		}
+
+		const res = await mockApi.get(`posts?userId=${id}`);
+
+		for (const item of res.data) item.color = color;
+
+		return res.data;
+
+	} catch (err: AxiosError) {
+		console.error(err);
+		throw err;
+	}
 }

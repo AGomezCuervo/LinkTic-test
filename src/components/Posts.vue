@@ -1,19 +1,13 @@
 <script setup lang="ts">
+import type { ApiPost } from '@/utils/types';
 import Post from '@/components/Post.vue';
 
-interface PropsData {
-	userName: string,
-	title: string,
-	body: string,
-	color: string,
-}
-
-defineProps<{data: PropsData[]}>()
+const props = defineProps<{data: ApiPost[]}>()
 </script>
 
 <template>
 <div class="posts-container">
-	<Post v-for="(user, index) in data" :data="user" :key="index" />
+	<Post v-for="(user, index) in props.data" :data="user" :key="index" />
 </div>
 </template>
 
